@@ -15,6 +15,21 @@ export default function App() {
 
 const calcular = () => setResultado(peso/(altura*altura))
 
+const situacao = imc => {
+  if (imc <= 16) {
+      return 'Subpeso Severo'
+  } else if (imc <= 19.9) {
+      return 'Subpeso'
+  } else if (imc <= 24.9) {
+  return 'Normal'
+} else if (imc <= 29.9) {
+  return 'Sobrepeso'
+  } else if (imc <= 39.9) {
+  return 'Obeso'
+  } else if (imc > 40) {
+  } return 'Obeso Mórbido'
+};
+
   return (
     <View style={styles.container}>
       <View style={styles.entradas}>
@@ -39,16 +54,10 @@ const calcular = () => setResultado(peso/(altura*altura))
       </TouchableOpacity>
       <Text style={styles.resultado}>{resultado.toFixed(2)}</Text>
       <Text style={[styles.resultado, {fontSize:40}]}></Text>
-      
-   </View>
+           <Text style={styles.condicaoText}>{situacao(resultado)}</Text>
+      </View>
   );
 }
-//Menos do que 18,5	Abaixo do peso
-//Entre 18,5 e 24,9	Peso normal
-//Entre 25 e 29,9	Sobrepeso
-//Entre 30 e 34,9	Obesidade grau 1
-//Entre 35 e 39,9	Obesidade grau 2
-//Mais do que 40	Obesidade grau 3
 
 
 const styles = StyleSheet.create({
@@ -86,4 +95,13 @@ flexDirection: 'row',
     fontSize: 65,
     padding: 15,
   },
+  
+  condicaoText: {
+flex: 1,
+justifyContent: 'center',
+alignSelf: 'center',
+color: 'black',
+fontSize: 50,
+  },
+
 });
